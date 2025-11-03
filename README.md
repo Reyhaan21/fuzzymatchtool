@@ -9,12 +9,14 @@ It determines whether two strings are a match based on a specified **confidence 
 
 - Supports multiple fuzzy matching algorithms:
 
-| Method             | Description                                                           |
-| ------------------ | --------------------------------------------------------------------- |
-| **ratio**          | Basic Levenshtein distance ratio (standard fuzzy score).              |
-| **partialratio**   | Compares best matching substring. Useful for partial overlaps.        |
-| **tokensortratio** | Ignores word order by sorting tokens before comparison.               |
-| **tokensetratio**  | Ignores word order and duplicate tokens. Best for multi-word phrases. |
+| Method | Description |
+| ------- | ----------- |
+| **ratio** | Basic Levenshtein distance ratio (standard fuzzy score). |
+| **partialratio** | Compares the best matching substring. Useful for partial overlaps. |
+| **tokensortratio** | Ignores word order by sorting tokens before comparison. |
+| **tokensetratio** | Ignores word order and duplicate tokens. Best for multi-word phrases. |
+| **partialtokensortratio** | Compares strings after sorting their words alphabetically, then finds the best-matching substring — great for reordered phrases with extra text. |
+| **partialtokensetratio** | Compares only the overlapping words between strings and finds the best substring match — best for messy names with extra or missing words. |
 
 - Command-line driven — ideal for scripts, pipelines, and automation.
 - Minimal output (true / false) for easy parsing.
@@ -22,17 +24,17 @@ It determines whether two strings are a match based on a specified **confidence 
 
 ## Usage
 
-FuzzyMatchTool.exe -s <string1> -t <string2> -c <confidence> -m <method>
+FuzzyMatchTool.exe -s <string1> -l <string2> -c <confidence> -m <method>
 
-| Flag | Description                                                                  | Example      |
-| ---- | ---------------------------------------------------------------------------- | ------------ |
-| -s   | Source string                                                                | -s "apple"   |
-| -t   | Target string                                                                | -t "appl"    |
-| -c   | Confidence level (0–100)                                                     | -c 80        |
-| -m   | Matching method (ratio, partialratio, tokensortratio, tokensetratio)         | -m ratio     |
+| Flag | Description | Example |
+| ---- | ------------ | -------- |
+| **-s** | Source string | `-s "apple"` |
+| **-l** | List of candidate strings (pipe `|` separated) | `-l "appl|appel|aaple"` |
+| **-c** | Confidence level (0–100) | `-c 80` |
+| **-m** | Matching method (`ratio`, `partialratio`, `tokensortratio`, `tokensetratio`, `partialtokensortratio`, `partialtokensetratio`) | `-m ratio` |
 
 
-e.g. C:\FuzzyMatch\FuzzyMatchTool.exe -s Test string -t test strong -c 90 -m ratio
+e.g. "C:\FuzzyMatch\FuzzyMatchTool.exe" -s "Test string" -l "test strong" -c 90 -m ratio
 
 Output: true or false
 

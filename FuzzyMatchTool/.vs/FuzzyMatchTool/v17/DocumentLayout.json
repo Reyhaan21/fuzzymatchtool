@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ReyhaanEbrahim\\OneDrive - Digiata\\Documents\\FuzzyMatchTool\\FuzzyMatchTool\\",
+  "WorkspaceRootPath": "C:\\Github\\fuzzymatchtool\\FuzzyMatchTool\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0FBB8BDE-E198-40E1-AF8A-830162C08011}|FuzzyMatchTool\\FuzzyMatchTool.csproj|c:\\users\\reyhaanebrahim\\onedrive - digiata\\documents\\fuzzymatchtool\\fuzzymatchtool\\fuzzymatchtool\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0FBB8BDE-E198-40E1-AF8A-830162C08011}|FuzzyMatchTool\\FuzzyMatchTool.csproj|c:\\github\\fuzzymatchtool\\fuzzymatchtool\\fuzzymatchtool\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0FBB8BDE-E198-40E1-AF8A-830162C08011}|FuzzyMatchTool\\FuzzyMatchTool.csproj|solutionrelative:fuzzymatchtool\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,11 +24,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ReyhaanEbrahim\\OneDrive - Digiata\\Documents\\FuzzyMatchTool\\FuzzyMatchTool\\FuzzyMatchTool\\Program.cs",
+              "DocumentMoniker": "C:\\Github\\fuzzymatchtool\\FuzzyMatchTool\\FuzzyMatchTool\\Program.cs",
               "RelativeDocumentMoniker": "FuzzyMatchTool\\Program.cs",
-              "ToolTip": "C:\\Users\\ReyhaanEbrahim\\OneDrive - Digiata\\Documents\\FuzzyMatchTool\\FuzzyMatchTool\\FuzzyMatchTool\\Program.cs",
+              "ToolTip": "C:\\Github\\fuzzymatchtool\\FuzzyMatchTool\\FuzzyMatchTool\\Program.cs",
               "RelativeToolTip": "FuzzyMatchTool\\Program.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAcwIYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAAAFkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-31T09:20:28.304Z",
               "EditorCaption": ""

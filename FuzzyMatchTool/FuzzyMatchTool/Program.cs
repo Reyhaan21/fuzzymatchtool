@@ -88,18 +88,6 @@ namespace FuzzyMatchTool
         // Matching helpers
         // --------------------------
 
-        static Func<string, string, int> GetScorer(string method) =>
-            method switch
-            {
-                "ratio" => (a, b) => Fuzz.Ratio(a, b),
-                "partialratio" => (a, b) => Fuzz.PartialRatio(a, b),
-                "tokensortratio" => (a, b) => Fuzz.TokenSortRatio(a, b),
-                "tokensetratio" => (a, b) => Fuzz.TokenSetRatio(a, b),
-                "partialtokensortratio" => (a, b) => Fuzz.PartialTokenSortRatio(a, b),
-                "partialtokensetratio" => (a, b) => Fuzz.PartialTokenSetRatio(a, b),
-                _ => throw new ArgumentException($"Unknown method '{method}'.")
-            };
-
         static string Normalize(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
