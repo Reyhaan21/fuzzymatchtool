@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "duKvMfVLnuM=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ReyhaanEbrahim\\OneDrive - Digiata\\Documents\\FuzzyMatchTool\\FuzzyMatchTool\\FuzzyMatchTool\\FuzzyMatchTool.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ReyhaanEbrahim\\.nuget\\packages\\fuzzysharp\\2.0.2\\fuzzysharp.2.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

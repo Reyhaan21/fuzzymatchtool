@@ -1,0 +1,17 @@
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\bin\Debug\net8.0\FuzzyMatchTool.exe
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\bin\Debug\net8.0\FuzzyMatchTool.deps.json
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\bin\Debug\net8.0\FuzzyMatchTool.runtimeconfig.json
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\bin\Debug\net8.0\FuzzyMatchTool.dll
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\bin\Debug\net8.0\FuzzyMatchTool.pdb
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\bin\Debug\net8.0\FuzzySharp.dll
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\obj\Debug\net8.0\FuzzyMatchTool.csproj.AssemblyReference.cache
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\obj\Debug\net8.0\FuzzyMatchTool.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\obj\Debug\net8.0\FuzzyMatchTool.AssemblyInfoInputs.cache
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\obj\Debug\net8.0\FuzzyMatchTool.AssemblyInfo.cs
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\obj\Debug\net8.0\FuzzyMatchTool.csproj.CoreCompileInputs.cache
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\obj\Debug\net8.0\FuzzyMat.1FBC675A.Up2Date
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\obj\Debug\net8.0\FuzzyMatchTool.dll
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\obj\Debug\net8.0\refint\FuzzyMatchTool.dll
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\obj\Debug\net8.0\FuzzyMatchTool.pdb
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\obj\Debug\net8.0\FuzzyMatchTool.genruntimeconfig.cache
+C:\Users\ReyhaanEbrahim\OneDrive - Digiata\Documents\FuzzyMatchTool\FuzzyMatchTool\FuzzyMatchTool\obj\Debug\net8.0\ref\FuzzyMatchTool.dll
