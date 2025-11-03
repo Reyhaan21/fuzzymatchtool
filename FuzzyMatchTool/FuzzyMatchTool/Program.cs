@@ -52,6 +52,8 @@ namespace FuzzyMatchTool
                     "partialratio" => Fuzz.PartialRatio(a, b),
                     "tokensortratio" => Fuzz.TokenSortRatio(a, b),
                     "tokensetratio" => Fuzz.TokenSetRatio(a, b),
+                    "partialtokensortratio" => Fuzz.PartialTokenSortRatio(a, b),
+                    "partialtokensetratio" => Fuzz.PartialTokenSetRatio(a, b),
                     _ => throw new ArgumentException($"Unknown method '{methodName}'.")
                 };
             }
@@ -93,6 +95,8 @@ namespace FuzzyMatchTool
                 "partialratio" => (a, b) => Fuzz.PartialRatio(a, b),
                 "tokensortratio" => (a, b) => Fuzz.TokenSortRatio(a, b),
                 "tokensetratio" => (a, b) => Fuzz.TokenSetRatio(a, b),
+                "partialtokensortratio" => (a, b) => Fuzz.PartialTokenSortRatio(a, b),
+                "partialtokensetratio" => (a, b) => Fuzz.PartialTokenSetRatio(a, b),
                 _ => throw new ArgumentException($"Unknown method '{method}'.")
             };
 

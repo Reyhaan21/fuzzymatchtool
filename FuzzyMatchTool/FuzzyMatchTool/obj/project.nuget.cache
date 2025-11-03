@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "duKvMfVLnuM=",
+  "dgSpecHash": "XhFNYu3MO9o=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ReyhaanEbrahim\\OneDrive - Digiata\\Documents\\FuzzyMatchTool\\FuzzyMatchTool\\FuzzyMatchTool\\FuzzyMatchTool.csproj",
+  "projectFilePath": "C:\\Github\\fuzzymatchtool\\FuzzyMatchTool\\FuzzyMatchTool\\FuzzyMatchTool.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ReyhaanEbrahim\\.nuget\\packages\\fuzzysharp\\2.0.2\\fuzzysharp.2.0.2.nupkg.sha512"
+    "C:\\Users\\ReyhaanEbrahim\\.nuget\\packages\\fuzzysharp\\2.0.2\\fuzzysharp.2.0.2.nupkg.sha512",
+    "C:\\Users\\ReyhaanEbrahim\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.21\\microsoft.net.illink.tasks.8.0.21.nupkg.sha512",
+    "C:\\Users\\ReyhaanEbrahim\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.21\\microsoft.netcore.app.runtime.win-x64.8.0.21.nupkg.sha512",
+    "C:\\Users\\ReyhaanEbrahim\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.21\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.21.nupkg.sha512",
+    "C:\\Users\\ReyhaanEbrahim\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.21\\microsoft.aspnetcore.app.runtime.win-x64.8.0.21.nupkg.sha512"
   ],
   "logs": []
 }
