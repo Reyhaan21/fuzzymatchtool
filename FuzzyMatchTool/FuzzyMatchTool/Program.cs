@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using FuzzySharp;
 
@@ -8,6 +9,14 @@ namespace FuzzyMatchTool
 {
     class Program
     {
+        // --------------------------
+        // Exit codes
+        // --------------------------
+        private const int EXIT_SUCCESS = 0;
+        private const int EXIT_NO_MATCH = 1;
+        private const int EXIT_INVALID_ARGS = 2;
+        private const int EXIT_RUNTIME_ERROR = 3;
+
         // --------------------------
         // Configurable normalization helpers
         // --------------------------
@@ -30,58 +39,89 @@ namespace FuzzyMatchTool
 
         static int Main(string[] args)
         {
-            var argDict = ParseArgs(args);
-            if (!argDict.ContainsKey("-s") || !argDict.ContainsKey("-l") ||
-                !argDict.ContainsKey("-c") || !argDict.ContainsKey("-m"))
+            try
             {
-                Console.Error.WriteLine("Usage: FuzzyMatchTool.exe -s <source> -l <list> -c <confidence> -m <method>");
-                return 2;
-            }
-
-            string name = Normalize(argDict["-s"]);
-            var list = argDict["-l"].Split('|').Select(Normalize).ToList();
-            string method = argDict["-m"].ToLowerInvariant();
-            int confidence = Math.Clamp(int.Parse(argDict["-c"]), 0, 100);
-
-            // helper to compute score based on method name
-            int GetScoreByName(string methodName, string a, string b)
-            {
-                return methodName switch
+                var argDict = ParseArgs(args);
+                if (!argDict.ContainsKey("-s") || !argDict.ContainsKey("-l") ||
+                    !argDict.ContainsKey("-c") || !argDict.ContainsKey("-m"))
                 {
-                    "ratio" => Fuzz.Ratio(a, b),
-                    "partialratio" => Fuzz.PartialRatio(a, b),
-                    "tokensortratio" => Fuzz.TokenSortRatio(a, b),
-                    "tokensetratio" => Fuzz.TokenSetRatio(a, b),
-                    "partialtokensortratio" => Fuzz.PartialTokenSortRatio(a, b),
-                    "partialtokensetratio" => Fuzz.PartialTokenSetRatio(a, b),
-                    _ => throw new ArgumentException($"Unknown method '{methodName}'.")
-                };
-            }
+                    Console.Error.WriteLine("Usage: FuzzyMatchTool.exe -s <source> -l <list> -c <confidence> -m <method>");
+                    return EXIT_INVALID_ARGS;
+                }
 
-            // Step 1: Run fuzzy comparison manually
-            var results = list
-                .Select((candidate, index) => new
+                // Validate and parse confidence parameter
+                if (!int.TryParse(argDict["-c"], out int confidence))
                 {
-                    Value = candidate,
-                    Score = GetScoreByName(method, name, candidate),
-                    Index = index
-                })
-                .ToList();
+                    Console.Error.WriteLine($"Error: Confidence must be a valid integer (0-100). Got: '{argDict["-c"]}'");
+                    return EXIT_INVALID_ARGS;
+                }
+                confidence = Math.Clamp(confidence, 0, 100);
 
-            // Step 2: Find best score and check for collisions
-            int maxScore = results.Select(r => r.Score).DefaultIfEmpty(0).Max();
-            bool hasCollision = results.Count(r => r.Score == maxScore) > 1;
+                string name = Normalize(argDict["-s"]);
+                var list = argDict["-l"].Split('|').Select(Normalize).ToList();
+                string method = argDict["-m"].ToLowerInvariant();
 
-            // Step 3: Return JSON result
-            if (hasCollision || maxScore < confidence)
-            {
-                Console.WriteLine($"{{ \"match\": false, \"score\": {maxScore}, \"index\": -1 }}");
-                return 1;
+                // Validate list is not empty
+                if (list.Count == 0 || list.All(string.IsNullOrWhiteSpace))
+                {
+                    Console.Error.WriteLine("Error: List of candidates cannot be empty.");
+                    return EXIT_INVALID_ARGS;
+                }
+
+                // helper to compute score based on method name
+                int GetScoreByName(string methodName, string a, string b)
+                {
+                    return methodName switch
+                    {
+                        "ratio" => Fuzz.Ratio(a, b),
+                        "partialratio" => Fuzz.PartialRatio(a, b),
+                        "tokensortratio" => Fuzz.TokenSortRatio(a, b),
+                        "tokensetratio" => Fuzz.TokenSetRatio(a, b),
+                        "partialtokensortratio" => Fuzz.PartialTokenSortRatio(a, b),
+                        "partialtokensetratio" => Fuzz.PartialTokenSetRatio(a, b),
+                        _ => throw new ArgumentException($"Unknown method '{methodName}'.")
+                    };
+                }
+
+                // Step 1: Run fuzzy comparison manually
+                var results = list
+                    .Select((candidate, index) => new
+                    {
+                        Value = candidate,
+                        Score = GetScoreByName(method, name, candidate),
+                        Index = index
+                    })
+                    .ToList();
+
+                // Step 2: Find best score and check for collisions
+                int maxScore = results.Select(r => r.Score).DefaultIfEmpty(0).Max();
+                bool hasCollision = results.Count(r => r.Score == maxScore) > 1;
+
+                // Step 3: Return JSON result
+                if (hasCollision || maxScore < confidence)
+                {
+                    var noMatchResult = new { match = false, score = maxScore, index = -1 };
+                    Console.WriteLine(JsonSerializer.Serialize(noMatchResult));
+                    return EXIT_NO_MATCH;
+                }
+
+                var best = results.First(r => r.Score == maxScore);
+                var matchResult = new { match = true, score = best.Score, index = best.Index, value = best.Value };
+                Console.WriteLine(JsonSerializer.Serialize(matchResult));
+                return EXIT_SUCCESS;
             }
-
-            var best = results.First(r => r.Score == maxScore);
-            Console.WriteLine($"{{ \"match\": true, \"score\": {best.Score}, \"index\": {best.Index}, \"value\": \"{best.Value}\" }}");
-            return 0;
+            catch (ArgumentException ex)
+            {
+                // Handle known validation errors (e.g., unknown method)
+                Console.Error.WriteLine($"Error: {ex.Message}");
+                return EXIT_INVALID_ARGS;
+            }
+            catch (Exception ex)
+            {
+                // Handle unexpected runtime errors
+                Console.Error.WriteLine($"Unexpected error: {ex.Message}");
+                return EXIT_RUNTIME_ERROR;
+            }
         }
 
         // --------------------------
@@ -115,6 +155,8 @@ namespace FuzzyMatchTool
         static Dictionary<string, string> ParseArgs(string[] args)
         {
             var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            // Loop stops at args.Length - 1 to prevent index out of bounds when checking args[i + 1]
+            // This intentionally skips the last argument if it's a flag without a value
             for (int i = 0; i < args.Length - 1; i++)
             {
                 if (args[i].StartsWith("-") && !args[i + 1].StartsWith("-"))

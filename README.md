@@ -19,24 +19,41 @@ It determines whether two strings are a match based on a specified **confidence 
 | **partialtokensetratio** | Compares only the overlapping words between strings and finds the best substring match — best for messy names with extra or missing words. |
 
 - Command-line driven — ideal for scripts, pipelines, and automation.
-- Minimal output (true / false) for easy parsing.
+- Structured JSON output for easy parsing and integration.
 - Robust error handling with exit codes.
 
 ## Usage
 
-FuzzyMatchTool.exe -s <string1> -l <string2> -c <confidence> -m <method>
+FuzzyMatchTool.exe -s <source> -l <list> -c <confidence> -m <method>
 
 | Flag | Description | Example |
 | ---- | ------------ | -------- |
 | **-s** | Source string | `-s "apple"` |
-| **-l** | List of candidate strings (pipe `|` separated) | `-l "appl|appel|aaple"` |
+| **-l** | List of candidate strings (pipe `\|` separated) | `-l "appl\|appel\|aaple"` |
 | **-c** | Confidence level (0–100) | `-c 80` |
 | **-m** | Matching method (`ratio`, `partialratio`, `tokensortratio`, `tokensetratio`, `partialtokensortratio`, `partialtokensetratio`) | `-m ratio` |
 
 
 e.g. "C:\FuzzyMatch\FuzzyMatchTool.exe" -s "Test string" -l "test strong" -c 90 -m ratio
 
-Output: true or false
+## Output Format
+
+The tool outputs JSON to stdout:
+
+**On successful match:**
+```json
+{ "match": true, "score": 92, "index": 0, "value": "test strong" }
+```
+
+**On no match or collision:**
+```json
+{ "match": false, "score": 75, "index": -1 }
+```
+
+- `match`: Boolean indicating whether a match was found above the confidence threshold
+- `score`: The highest fuzzy match score (0-100)
+- `index`: Zero-based index of the matched candidate in the list (-1 if no match)
+- `value`: The matched value from the list (only present when match is true)
 
 ## Exit Codes
 
