@@ -155,12 +155,20 @@ namespace FuzzyMatchTool
         static Dictionary<string, string> ParseArgs(string[] args)
         {
             var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            // Loop stops at args.Length - 1 to prevent index out of bounds when checking args[i + 1]
-            // This intentionally skips the last argument if it's a flag without a value
-            for (int i = 0; i < args.Length - 1; i++)
+            for (int i = 0; i < args.Length; i++)
             {
-                if (args[i].StartsWith("-") && !args[i + 1].StartsWith("-"))
-                    dict[args[i]] = args[i + 1];
+                if (args[i].StartsWith("-"))
+                {
+                    if (i + 1 < args.Length && !args[i + 1].StartsWith("-"))
+                    {
+                        dict[args[i]] = args[i + 1];
+                        i++; // skip the value
+                    }
+                    else
+                    {
+                        Console.Error.WriteLine($"Missing value for argument: {args[i]}");
+                    }
+                }
             }
             return dict;
         }
